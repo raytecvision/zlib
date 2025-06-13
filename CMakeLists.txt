@@ -7,7 +7,13 @@ set(VERSION "1.3.1")
 
 option(ZLIB_BUILD_EXAMPLES "Enable Zlib Examples" ON)
 
-set(INSTALL_BIN_DIR "${CMAKE_INSTALL_PREFIX}/bin" CACHE PATH "Installation directory for executables")
+if (MSVC)
+    set(CMAKE_INSTALL_PREFIX "C:/Raytec-Dev-3/msvc/x64/5.12.12/zlib")
+else()
+    set(CMAKE_INSTALL_PREFIX "C:/Raytec-Dev-3/mingw/x86/5.5.1/zlib")
+endif()
+
+set(INSTALL_BIN_DIR "${CMAKE_INSTALL_PREFIX}/lib" CACHE PATH "Installation directory for executables")
 set(INSTALL_LIB_DIR "${CMAKE_INSTALL_PREFIX}/lib" CACHE PATH "Installation directory for libraries")
 set(INSTALL_INC_DIR "${CMAKE_INSTALL_PREFIX}/include" CACHE PATH "Installation directory for headers")
 set(INSTALL_MAN_DIR "${CMAKE_INSTALL_PREFIX}/share/man" CACHE PATH "Installation directory for manual pages")
