@@ -113,4 +113,7 @@ cd ..\
 cd %project_path%
 IF "%do_pause%"=="1" ( pause )
 
+set BUILD_RC=%ERRORLEVEL%
+exit /b %BUILD_RC%
+
 endlocal
