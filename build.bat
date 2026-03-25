@@ -103,17 +103,16 @@ echo %cmake_variables_qt%
 
 cmake -S ..\%project_path% -B ..\%make_path% "-GNMake Makefiles JOM" "-DCMAKE_BUILD_TYPE=%make_tag%" %cmake_variables_qt%
 
-IF "%do_clean%"=="1" (
-	cmake --build ..\%make_path% --target clean	
-)
-	
-cmake --build ..\%make_path% --target all install --parallel
+cmake --build ..\%make_path% --target all --parallel
+if errorlevel 1 exit /b 1
+
+cmake --build ..\%make_path% --target install
+if errorlevel 1 exit /b 1
 
 cd ..\
 cd %project_path%
 IF "%do_pause%"=="1" ( pause )
 
-set BUILD_RC=%ERRORLEVEL%
-exit /b %BUILD_RC%
+exit /b 0
 
 endlocal
